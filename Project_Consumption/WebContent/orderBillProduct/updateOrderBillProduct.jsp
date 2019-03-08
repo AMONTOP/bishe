@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>添加消费记录</title>
+<link rel="stylesheet" type="text/css" href="/Project_Consumption/css/easyui/easyui.css" />
+<link rel="stylesheet" type="text/css" href="/Project_Consumption/css/easyui/icon.css" />
+<link rel="stylesheet" type="text/css" href="/Project_Consumption/css/base.css" />
+<script type="text/javascript" src="/Project_Consumption/js/easyui/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/Project_Consumption/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/Project_Consumption/js/easyui/easyui-lang-zh_CN.js"></script>
+  </head>  
+  <body>
+		<div id="container" class="easyui-layout" style="width:1024px;height:800px;padding:1px;margin-left:auto; margin-right:auto;">
+			<div id="mainbody" style="height:90%">
+				  <center>
+				    <h1 style="color:skyblue;">修改产品类别记录</h1>
+				    <div style="padding:3px;color:red;">
+				      ${msg}
+				    </div>
+				    <form action="updateorderBillProduct" method="post">
+				      <input id="billProductId" type="hidden" name="orderBillProduct.billProductId" value="${orderBillProduct.billProductId}"/>
+				      <input type="hidden" name="orderBillProduct.orderBill.billId" value="${orderBillProduct.orderBill.billId }"/>
+				     <div style="padding:3px;">
+				        <label for="billNo">订单编号：</label>
+				        <input type="text" value="${orderBillProduct.orderBill.billNo}" class="easyui-validatebox textbox" readOnly/>
+				        <%-- <select id="billId" name="orderBillProduct.orderBill.billId" class="easyui-validatebox textbox" style="width:180px;">
+				          <option value="0">---请选择订单编号---</option>
+				           <c:forEach items="${listOrderBills}" var="orderBill">		            
+				                <option value="${orderBill.billId}" name="orderBillProduct.orderBill.billId">${orderBill.billNo}</option>			          
+				           </c:forEach> 				   
+				        </select> --%>
+				      </div>
+	
+				      <div style="padding:3px;">
+				        <label for="orderBillProduct.product.productName">货品名称：</label>				     
+				        <select id="clientId" name="orderBillProduct.product.productId" class="easyui-validatebox textbox" style="width:280px;">
+				          <option value="0">---请选择货品名称---</option>
+				          <c:forEach items="${listProducts}" var="product">				            
+				                <option value="${product.productId}" name="orderBillProduct.product.productId">${product.productName}</option>				          
+				          </c:forEach>
+				        </select>
+				      </div> 
+				      <div style="padding:3px;">
+				        <label for="billTime">数量：</label>
+				        <input id="billTime" type="text" name="orderBillProduct.quantity" value="${orderBillProduct.quantity}" class="easyui-validatebox textbox" />
+				      </div> 
+				
+				      				  
+				      <div style="padding:3px;">
+				        <input type="reset" value="重置"/>
+				        &nbsp;&nbsp;&nbsp;
+				        <input type="submit" value="修改"/>
+				      </div>
+				    </form>
+				  </center>
+				</div>
+				<div id="tailbody" style="height:3%">
+				  <%@ include file="../tail.jsp" %>
+				</div>
+			</div>
+  </body>
+</html>

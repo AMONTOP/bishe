@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	
+  <bean id="accountInfoDao" class="swust.dao.impl.AccountInfoDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="accountInfoService" class="swust.service.impl.AccountInfoServiceImpl" p:accountInfoDao-ref="accountInfoDao"></bean>
+  <bean id="accountInfoAction" class="swust.action.AccountInfoAction" p:accountInfoService-ref="accountInfoService" scope="prototype"></bean>
+  
+  <bean id="accountPayDao" class="swust.dao.impl.AccountPayDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="accountPayService" class="swust.service.impl.AccountPayServiceImpl" p:accountPayDao-ref="accountPayDao"></bean>
+  <bean id="accountPayAction" class="swust.action.AccountPayAction" p:accountPayService-ref="accountPayService" p:employeeService-ref="employeeService" p:supplierService-ref="supplierService" p:accountInfoService-ref="accountInfoService" p:projectService-ref="projectService" scope="prototype"></bean>
+  
+  <bean id="accountPettyDao" class="swust.dao.impl.AccountPettyDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="accountPettyService" class="swust.service.impl.AccountPettyServiceImpl" p:accountPettyDao-ref="accountPettyDao"></bean>
+  <bean id="accountPettyAction" class="swust.action.AccountPettyAction" p:accountPettyService-ref="accountPettyService" p:employeeService-ref="employeeService" p:projectService-ref="projectService" scope="prototype"></bean>
+  
+  <bean id="accountProjectDao" class="swust.dao.impl.AccountProjectDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="accountProjectService" class="swust.service.impl.AccountProjectServiceImpl" p:accountProjectDao-ref="accountProjectDao"></bean>
+  <bean id="accountProjectAction" class="swust.action.AccountProjectAction" p:accountProjectService-ref="accountProjectService" p:projectService-ref="projectService" p:employeeService-ref="employeeService" scope="prototype"></bean>
+  
+  <bean id="accountRepayDao" class="swust.dao.impl.AccountRepayDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="accountRepayService" class="swust.service.impl.AccountRepayServiceImpl" p:accountRepayDao-ref="accountRepayDao"></bean>
+  <bean id="accountRepayAction" class="swust.action.AccountRepayAction" p:accountRepayService-ref="accountRepayService" p:employeeService-ref="employeeService" p:supplierService-ref="supplierService" p:accountInfoService-ref="accountInfoService" scope="prototype"></bean>	
+	
+  <bean id="typeDao" class="swust.dao.impl.TypeDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="typeService" class="swust.service.impl.TypeServiceImpl" p:typeDao-ref="typeDao"></bean>
+  <bean id="typeAction" class="swust.action.TypeAction" p:typeService-ref="typeService" scope="prototype"></bean>
+  
+  <bean id="consumerDao" class="swust.dao.impl.ConsumerDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="consumerService" class="swust.service.impl.ConsumerServiceImpl" p:consumerDao-ref="consumerDao"></bean>
+  <bean id="consumerAction" class="swust.action.ConsumerAction" p:consumerService-ref="consumerService" scope="prototype"></bean>
+  
+
+  <bean id="consumeDao" class="swust.dao.impl.ConsumeDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="consumeService" class="swust.service.impl.ConsumeServiceImpl" p:consumeDao-ref="consumeDao" p:typeDao-ref="typeDao"></bean>
+  <bean id="consumeAction" class="swust.action.ConsumeAction" p:consumeService-ref="consumeService" p:typeService-ref="typeService" scope="prototype"></bean>
+  
+  <bean id="clientDao" class="swust.dao.impl.ClientDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="clientService" class="swust.service.impl.ClientServiceImpl" p:clientDao-ref="clientDao"></bean>
+  <bean id="clientAction" class="swust.action.ClientAction" p:clientService-ref="clientService" scope="prototype"></bean>
+  
+  <bean id="salaryDao" class="swust.dao.impl.SalaryDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="salaryService" class="swust.service.impl.SalaryServiceImpl" p:salaryDao-ref="salaryDao"></bean>
+  <bean id="salaryAction" class="swust.action.SalaryAction" p:salaryService-ref="salaryService" p:employeeService-ref="employeeService" p:projectTaskService-ref="projectTaskService"   scope="prototype"></bean>
+  
+  <bean id="profitDao" class="swust.dao.impl.ProfitDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="profitService" class="swust.service.impl.ProfitServiceImpl" p:profitDao-ref="profitDao"></bean>
+  <bean id="profitAction" class="swust.action.ProfitAction" p:profitService-ref="profitService" p:salaryService-ref="salaryService" p:orderBillProductService-ref="orderBillProductService" scope="prototype"></bean>
+  
+  
+  <bean id="purchaseDao" class="swust.dao.impl.PurchaseDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="purchaseService" class="swust.service.impl.PurchaseServiceImpl" p:purchaseDao-ref="purchaseDao"></bean>
+  <bean id="purchaseAction" class="swust.action.PurchaseAction" p:purchaseService-ref="purchaseService" p:materialService-ref="materialService" p:mwareHouseMaterialService-ref="mwareHouseMaterialService" scope="prototype"></bean>
+  
+  <bean id="projectDao" class="swust.dao.impl.ProjectDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="projectService" class="swust.service.impl.ProjectServiceImpl" p:projectDao-ref="projectDao"></bean>
+  <bean id="projectAction" class="swust.action.ProjectAction" p:projectService-ref="projectService" p:employeeService-ref="employeeService" p:orderBillService-ref="orderBillService" scope="prototype"></bean>
+  
+  <bean id="projectTaskDao" class="swust.dao.impl.ProjectTaskDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="projectTaskService" class="swust.service.impl.ProjectTaskServiceImpl" p:projectTaskDao-ref="projectTaskDao"></bean>
+  <bean id="projectTaskAction" class="swust.action.ProjectTaskAction" p:projectTaskService-ref="projectTaskService" p:projectService-ref="projectService" p:employeeService-ref="employeeService"  scope="prototype"></bean>
+  
+  <bean id="employeeDao" class="swust.dao.impl.EmployeeDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="employeeService" class="swust.service.impl.EmployeeServiceImpl" p:employeeDao-ref="employeeDao" p:employeeRoleDao-ref="employeeRoleDao"></bean>
+  <bean id="employeeAction" class="swust.action.EmployeeAction" p:employeeService-ref="employeeService" p:employeeRoleService-ref="employeeRoleService" p:projectService-ref="projectService" scope="prototype"></bean>
+  
+  <bean id="employeeRoleDao" class="swust.dao.impl.EmployeeRoleDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="employeeRoleService" class="swust.service.impl.EmployeeRoleServiceImpl" p:employeeDao-ref="employeeDao" p:employeeRoleDao-ref="employeeRoleDao"></bean>
+  <bean id="employeeRoleAction" class="swust.action.EmployeeRoleAction" p:employeeService-ref="employeeService" p:employeeRoleService-ref="employeeRoleService" scope="prototype"></bean>
+  
+
+  
+  <bean id="productCategoryDao" class="swust.dao.impl.ProductCategoryDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="productCategoryService" class="swust.service.impl.ProductCategoryServiceImpl" p:productCategoryDao-ref="productCategoryDao"></bean>
+  <bean id="productCategoryAction" class="swust.action.ProductCategoryAction" p:productCategoryService-ref="productCategoryService" scope="prototype"></bean>
+  
+  <bean id="productDao" class="swust.dao.impl.ProductDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="productService" class="swust.service.impl.ProductServiceImpl" p:productDao-ref="productDao" p:productCategoryDao-ref="productCategoryDao"></bean>
+  <bean id="productAction" class="swust.action.ProductAction" p:productService-ref="productService" p:productCategoryService-ref="productCategoryService" p:productMaterialService-ref="productMaterialService" scope="prototype"></bean>
+  
+  <bean id="productCheckDao" class="swust.dao.impl.ProductCheckDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="productCheckService" class="swust.service.impl.ProductCheckServiceImpl" p:productDao-ref="productDao" p:productCheckDao-ref="productCheckDao"></bean>
+  <bean id="productCheckAction" class="swust.action.ProductCheckAction" p:productService-ref="productService" p:productCheckService-ref="productCheckService" scope="prototype"></bean>
+  
+   <bean id="materialCategoryDao" class="swust.dao.impl.MaterialCategoryDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="materialCategoryService" class="swust.service.impl.MaterialCategoryServiceImpl" p:materialCategoryDao-ref="materialCategoryDao"></bean>
+  <bean id="materialCategoryAction" class="swust.action.MaterialCategoryAction" p:materialCategoryService-ref="materialCategoryService" scope="prototype"></bean>
+  
+  <bean id="materialDao" class="swust.dao.impl.MaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="materialService" class="swust.service.impl.MaterialServiceImpl" p:materialDao-ref="materialDao" p:materialCategoryDao-ref="materialCategoryDao"></bean>
+  <bean id="materialAction" class="swust.action.MaterialAction" p:materialService-ref="materialService" p:materialCategoryService-ref="materialCategoryService" scope="prototype"></bean>
+  
+  <bean id="materialCheckDao" class="swust.dao.impl.MaterialCheckDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="materialCheckService" class="swust.service.impl.MaterialCheckServiceImpl" p:materialDao-ref="materialDao" p:materialCheckDao-ref="materialCheckDao"></bean>
+  <bean id="materialCheckAction" class="swust.action.MaterialCheckAction" p:materialService-ref="materialService" p:materialCheckService-ref="materialCheckService" scope="prototype"></bean>
+  
+  
+  <bean id="productMaterialDao" class="swust.dao.impl.ProductMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="productMaterialService" class="swust.service.impl.ProductMaterialServiceImpl" p:productDao-ref="productDao" p:productMaterialDao-ref="productMaterialDao" p:materialDao-ref="materialDao"></bean>
+  <bean id="productMaterialAction" class="swust.action.ProductMaterialAction" p:productService-ref="productService" p:materialService-ref="materialService" p:productMaterialService-ref="productMaterialService" scope="prototype"></bean>
+  
+  <bean id="orderBillDao" class="swust.dao.impl.OrderBillDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="orderBillService" class="swust.service.impl.OrderBillServiceImpl" p:orderBillDao-ref="orderBillDao"></bean>
+  <bean id="orderBillAction" class="swust.action.OrderBillAction" p:orderBillService-ref="orderBillService" p:clientService-ref="clientService"  p:employeeService-ref="employeeService" scope="prototype"></bean>
+  
+  <bean id="orderBillProductDao" class="swust.dao.impl.OrderBillProductDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="orderBillProductService" class="swust.service.impl.OrderBillProductServiceImpl" p:productDao-ref="productDao" p:orderBillDao-ref="orderBillDao" p:orderBillProductDao-ref="orderBillProductDao"></bean>
+  <bean id="orderBillProductAction" class="swust.action.OrderBillProductAction" p:productService-ref="productService" p:orderBillService-ref="orderBillService" p:orderBillProductService-ref="orderBillProductService" scope="prototype"></bean>
+ 
+  <bean id="drawMaterialBillDao" class="swust.dao.impl.DrawMaterialBillDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="drawMaterialBillService" class="swust.service.impl.DrawMaterialBillServiceImpl" p:drawMaterialBillDao-ref="drawMaterialBillDao"></bean>
+  <bean id="drawMaterialBillAction" class="swust.action.DrawMaterialBillAction" p:drawMaterialBillService-ref="drawMaterialBillService" p:drawMaterialBillMaterialService-ref="drawMaterialBillMaterialService" p:orderBillService-ref="orderBillService" p:orderBillProductService-ref="orderBillProductService" p:mwareHouseService-ref="mwareHouseService" p:employeeService-ref="employeeService"  scope="prototype"></bean>
+  
+  <bean id="drawMaterialBillMaterialDao" class="swust.dao.impl.DrawMaterialBillMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="drawMaterialBillMaterialService" class="swust.service.impl.DrawMaterialBillMaterialServiceImpl" p:drawMaterialBillMaterialDao-ref="drawMaterialBillMaterialDao" p:drawMaterialBillDao-ref="drawMaterialBillDao" p:materialDao-ref="materialDao"></bean>
+  <bean id="drawMaterialBillMaterialAction" class="swust.action.DrawMaterialBillMaterialAction" p:drawMaterialBillMaterialService-ref="drawMaterialBillMaterialService" p:drawMaterialBillService-ref="drawMaterialBillService" p:materialService-ref="materialService" scope="prototype"></bean>
+  
+  <bean id="returnMaterialBillDao" class="swust.dao.impl.ReturnMaterialBillDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="returnMaterialBillService" class="swust.service.impl.ReturnMaterialBillServiceImpl" p:returnMaterialBillDao-ref="returnMaterialBillDao"></bean>
+  <bean id="returnMaterialBillAction" class="swust.action.ReturnMaterialBillAction" p:returnMaterialBillService-ref="returnMaterialBillService" p:returnMaterialBillMaterialService-ref="returnMaterialBillMaterialService" p:orderBillService-ref="orderBillService" p:orderBillProductService-ref="orderBillProductService" p:mwareHouseService-ref="mwareHouseService" p:employeeService-ref="employeeService" scope="prototype"></bean>
+  
+  <bean id="returnMaterialBillMaterialDao" class="swust.dao.impl.ReturnMaterialBillMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="returnMaterialBillMaterialService" class="swust.service.impl.ReturnMaterialBillMaterialServiceImpl" p:returnMaterialBillMaterialDao-ref="returnMaterialBillMaterialDao" p:returnMaterialBillDao-ref="returnMaterialBillDao" p:materialDao-ref="materialDao"></bean>
+  <bean id="returnMaterialBillMaterialAction" class="swust.action.ReturnMaterialBillMaterialAction" p:returnMaterialBillMaterialService-ref="returnMaterialBillMaterialService" p:returnMaterialBillService-ref="returnMaterialBillService" p:materialService-ref="materialService" scope="prototype"></bean>
+  
+  <bean id="productOutstockBillDao" class="swust.dao.impl.ProductOutstockBillDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="productOutstockBillService" class="swust.service.impl.ProductOutstockBillServiceImpl" p:productOutstockBillDao-ref="productOutstockBillDao" p:productDao-ref="productDao" p:employeeDao-ref="employeeDao" p:wareHouseDao-ref="wareHouseDao"></bean>
+  <bean id="productOutstockBillAction" class="swust.action.ProductOutstockBillAction" p:productOutstockBillService-ref="productOutstockBillService" p:wareHouseService-ref="wareHouseService" p:employeeService-ref="employeeService" p:productService-ref="productService" p:wareHouseProductService-ref="wareHouseProductService" scope="prototype"></bean>
+  
+  <bean id="productOutstockBillProductDao" class="swust.dao.impl.ProductOutstockBillProductDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="productOutstockBillProductService" class="swust.service.impl.ProductOutstockBillProductServiceImpl" p:productOutstockBillProductDao-ref="productOutstockBillProductDao" p:productOutstockBillDao-ref="productOutstockBillDao" p:productDao-ref="productDao"></bean>
+  <bean id="productOutstockBillProductAction" class="swust.action.ProductOutstockBillProductAction" p:productOutstockBillProductService-ref="productOutstockBillProductService" p:productOutstockBillService-ref="productOutstockBillService" p:productService-ref="productService" scope="prototype"></bean>
+  
+  <bean id="productInstockBillDao" class="swust.dao.impl.ProductInstockBillDaoImpl" p:sessionFactory-ref="sessionFactory" ></bean>
+  <bean id="productInstockBillService" class="swust.service.impl.ProductInstockBillServiceImpl" p:productInstockBillDao-ref="productInstockBillDao" p:productDao-ref="productDao"  p:employeeDao-ref="employeeDao" p:wareHouseDao-ref="wareHouseDao"></bean>
+  <bean id="productInstockBillAction" class="swust.action.ProductInstockBillAction" p:productInstockBillService-ref="productInstockBillService"  p:wareHouseService-ref="wareHouseService" p:employeeService-ref="employeeService" p:productService-ref="productService"  scope="prototype"></bean>
+  
+  <bean id="productInstockBillProductDao" class="swust.dao.impl.ProductInstockBillProductDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="productInstockBillProductService" class="swust.service.impl.ProductInstockBillProductServiceImpl" p:productInstockBillProductDao-ref="productInstockBillProductDao" p:productInstockBillDao-ref="productInstockBillDao" p:productDao-ref="productDao"></bean>
+  <bean id="productInstockBillProductAction" class="swust.action.ProductInstockBillProductAction" p:productInstockBillProductService-ref="productInstockBillProductService" p:productInstockBillService-ref="productInstockBillService" p:productService-ref="productService" scope="prototype"></bean>
+  
+  
+  <bean id="materialOutstockBillDao" class="swust.dao.impl.MaterialOutstockBillDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="materialOutstockBillService" class="swust.service.impl.MaterialOutstockBillServiceImpl" p:materialOutstockBillDao-ref="materialOutstockBillDao"></bean>
+  <bean id="materialOutstockBillAction" class="swust.action.MaterialOutstockBillAction" p:materialOutstockBillService-ref="materialOutstockBillService" p:mwareHouseService-ref="mwareHouseService" p:employeeService-ref="employeeService" p:materialService-ref="materialService" p:mwareHouseMaterialService-ref="mwareHouseMaterialService" scope="prototype"></bean>
+  
+  <!-- <bean id="materialOutstockBillMaterialDao" class="swust.dao.impl.MaterialOutstockBillMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="materialOutstockBillMaterialService" class="swust.service.impl.MaterialOutstockBillMaterialServiceImpl" p:materialOutstockBillMaterialDao-ref="materialOutstockBillMaterialDao" p:materialOutstockBillDao-ref="materialOutstockBillDao" p:materialDao-ref="materialDao"></bean>
+  <bean id="materialOutstockBillMaterialAction" class="swust.action.MaterialOutstockBillMaterialAction" p:materialOutstockBillMaterialService-ref="materialOutstockBillMaterialService" p:materialOutstockBillService-ref="materialOutstockBillService" p:materialService-ref="materialService" scope="prototype"></bean>
+   -->
+  
+  <bean id="materialInstockBillDao" class="swust.dao.impl.MaterialInstockBillDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="materialInstockBillService" class="swust.service.impl.MaterialInstockBillServiceImpl" p:materialInstockBillDao-ref="materialInstockBillDao"></bean>
+  <bean id="materialInstockBillAction" class="swust.action.MaterialInstockBillAction" p:materialInstockBillService-ref="materialInstockBillService" p:mwareHouseService-ref="mwareHouseService" p:materialService-ref="materialService" p:employeeService-ref="employeeService" p:mwareHouseMaterialService-ref="mwareHouseMaterialService" p:purchaseService-ref="purchaseService" scope="prototype"></bean>
+  
+  <!-- <bean id="materialInstockBillMaterialDao" class="swust.dao.impl.MaterialInstockBillMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="materialInstockBillMaterialService" class="swust.service.impl.MaterialInstockBillMaterialServiceImpl" p:materialInstockBillMaterialDao-ref="materialInstockBillMaterialDao" p:materialInstockBillDao-ref="materialInstockBillDao" p:materialDao-ref="materialDao"></bean>
+  <bean id="materialInstockBillMaterialAction" class="swust.action.MaterialInstockBillMaterialAction" p:materialInstockBillMaterialService-ref="materialInstockBillMaterialService" p:materialInstockBillService-ref="materialInstockBillService" p:materialService-ref="materialService" scope="prototype"></bean>
+   -->
+  <bean id="supplierDao" class="swust.dao.impl.SupplierDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="supplierService" class="swust.service.impl.SupplierServiceImpl" p:supplierDao-ref="supplierDao"></bean>
+  <bean id="supplierAction" class="swust.action.SupplierAction" p:supplierService-ref="supplierService" scope="prototype"></bean>
+ 
+  <bean id="supplierMaterialDao" class="swust.dao.impl.SupplierMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="supplierMaterialService" class="swust.service.impl.SupplierMaterialServiceImpl" p:supplierDao-ref="supplierDao" p:materialDao-ref="materialDao" p:supplierMaterialDao-ref="supplierMaterialDao"></bean>
+  <bean id="supplierMaterialAction" class="swust.action.SupplierMaterialAction" p:supplierService-ref="supplierService" p:materialService-ref="materialService" p:supplierMaterialService-ref="supplierMaterialService" scope="prototype"></bean>
+ 
+  <bean id="employeePermissionDao" class="swust.dao.impl.EmployeePermissionDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="employeePermissionService" class="swust.service.impl.EmployeePermissionServiceImpl" p:employeePermissionDao-ref="employeePermissionDao"></bean>
+  <bean id="employeePermissionAction" class="swust.action.EmployeePermissionAction" p:employeePermissionService-ref="employeePermissionService" scope="prototype"></bean>
+  
+  <bean id="roleDao" class="swust.dao.impl.RoleDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="roleService" class="swust.service.impl.RoleServiceImpl" p:roleDao-ref="roleDao"></bean>
+  <bean id="roleAction" class="swust.action.RoleAction" p:roleService-ref="roleService" p:employeePermissionService-ref="employeePermissionService" scope="prototype"></bean>
+  
+  <bean id="wareHouseDao" class="swust.dao.impl.WareHouseDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="wareHouseService" class="swust.service.impl.WareHouseServiceImpl" p:wareHouseDao-ref="wareHouseDao"></bean>
+  <bean id="wareHouseAction" class="swust.action.WareHouseAction" p:wareHouseService-ref="wareHouseService" p:productService-ref="productService" p:employeeService-ref="employeeService" p:wareHouseProductService-ref="wareHouseProductService" scope="prototype"></bean>
+  
+  <bean id="wareHouseProductDao" class="swust.dao.impl.WareHouseProductDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="wareHouseProductService" class="swust.service.impl.WareHouseProductServiceImpl" p:wareHouseProductDao-ref="wareHouseProductDao"></bean>
+  <bean id="wareHouseProductAction" class="swust.action.WareHouseProductAction" p:wareHouseProductService-ref="wareHouseProductService" p:wareHouseService-ref="wareHouseService" p:productService-ref="productService"></bean> 
+  
+  <bean id="mwareHouseDao" class="swust.dao.impl.MwareHouseDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="mwareHouseService" class="swust.service.impl.MwareHouseServiceImpl" p:mwareHouseDao-ref="mwareHouseDao"></bean>
+  <bean id="mwareHouseAction" class="swust.action.MwareHouseAction" p:mwareHouseService-ref="mwareHouseService" p:materialService-ref="materialService" p:employeeService-ref="employeeService" p:mwareHouseMaterialService-ref="mwareHouseMaterialService" scope="prototype"></bean>
+  
+  <bean id="mwareHouseMaterialDao" class="swust.dao.impl.MwareHouseMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="mwareHouseMaterialService" class="swust.service.impl.MwareHouseMaterialServiceImpl" p:mwareHouseMaterialDao-ref="mwareHouseMaterialDao"></bean>
+  <bean id="mwareHouseMaterialAction" class="swust.action.MwareHouseMaterialAction" p:mwareHouseMaterialService-ref="mwareHouseMaterialService" p:mwareHouseService-ref="mwareHouseService" p:materialService-ref="materialService"></bean> 
+  
+  <bean id="uselessProductDao" class="swust.dao.impl.UselessProductDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="uselessProductService" class="swust.service.impl.UselessProductServiceImpl" p:uselessProductDao-ref="uselessProductDao"></bean>
+  <bean id="uselessProductAction" class="swust.action.UselessProductAction" p:uselessProductService-ref="uselessProductService" scope="prototype"></bean>
+ 
+  <bean id="uselessMaterialDao" class="swust.dao.impl.UselessMaterialDaoImpl" p:sessionFactory-ref="sessionFactory"></bean>
+  <bean id="uselessMaterialService" class="swust.service.impl.UselessMaterialServiceImpl" p:uselessMaterialDao-ref="uselessMaterialDao"></bean>
+  <bean id="uselessMaterialAction" class="swust.action.UselessMaterialAction" p:uselessMaterialService-ref="uselessMaterialService" scope="prototype"></bean>
+  
+  <bean id="adminAction" class="swust.action.AdminAction" scope="prototype"></bean>
+  
+  <bean id="verifyCodeAction" class="swust.action.VerifyCodeAction"></bean>
+</beans>

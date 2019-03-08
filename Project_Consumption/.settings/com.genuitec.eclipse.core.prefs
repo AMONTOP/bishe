@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebContent/gantejs/holidays.js,WebContent/extends/authtree.js,WebContent/resources/js,WebContent/systemSet/tree.json,WebContent/layui/layui.js,WebContent/resources/plugins,WebContent/js,WebContent/layui/lay,WebContent/layui/layui.all.js
+validator.Unchecked=

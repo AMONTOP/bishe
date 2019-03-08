@@ -1,0 +1,1 @@
+delete from draw_material_bill where drawbillId not in (select * from (select  drawbillId from draw_material_bill group by billNo) t)

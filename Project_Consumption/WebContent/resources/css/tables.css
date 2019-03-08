@@ -1,0 +1,128 @@
+
+		.card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.3125rem;
+            margin-bottom: 47px;
+    		margin-top: 38px;
+    		clear: both;
+        }
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1.25rem;
+        }
+        .card .card-title {
+            color: #000;
+            margin-bottom: .75rem;
+            text-transform: capitalize;
+            font-family: "ubuntu-medium", sans-serif;
+            font-size: 1.5rem;
+    		font-weight: bold;
+        }
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+        .table {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 1rem;
+            background-color: transparent;
+        }
+        
+        thead {
+            display: table-header-group;
+            vertical-align: middle;
+            border-color: inherit;
+        }
+        .table thead th {
+            border-top: 0;
+            font-family: "ubuntu-medium", sans-serif;
+            font-weight: bold;
+            vertical-align: bottom;
+            border-bottom: 2px solid #ebedf2;
+            text-align: left;
+		    font-size: 16px;		  
+        }
+        .table th, .table td {
+            vertical-align: middle;
+            font-size: 1.2rem;
+            line-height: 1;
+            padding: 0.9375rem;
+            border-top: 1px solid #ebedf2;
+        }
+        .table th img, .table td img {
+            width: 36px;
+            height: 36px;
+            border-radius: 100%;
+        }
+        .badge {
+            border-radius: .125rem;
+            font-size: 11px;
+            font-weight: initial;
+            line-height: 1;
+            padding: .375rem .5625rem;
+            font-family: "ubuntu-medium", sans-serif;
+        }
+        .badge-gradient-success {
+            background: linear-gradient(to right, #84d9d2, #07cdae);
+            color: #ffffff;
+        }
+        .badge-gradient-warning {
+            background: linear-gradient(to right, #f6e384, #ffd500);
+            color: #ffffff;
+        }
+        .badge-gradient-info {
+            background: linear-gradient(to right, #90caf9, #047edf 99%);
+            color: #ffffff;
+        }
+        .badge-gradient-danger {
+            background: linear-gradient(to right, #ffbf96, #fe7096);
+            color: #ffffff;
+        }
+        .progress {
+            border-radius: 3px;
+            height: 8px;
+            display: flex;
+            overflow: hidden;
+            font-size: 0.75rem;
+            background-color: #e9ecef;
+        }
+        .progress .progress-bar {
+            border-radius: 3px;
+        }
+
+        .progress-bar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #007bff;
+            transition: width 0.6s ease;
+        }
+        .bg-gradient-success {
+            background: linear-gradient(to right, #84d9d2, #07cdae);
+        }
+        .bg-gradient-danger {
+            background: linear-gradient(to right, #ffbf96, #fe7096);
+        }
+        .bg-gradient-warning {
+            background: linear-gradient(to right, #f6e384, #ffd500);
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(to right, #da8cff, #9a55ff);
+        }
+        .bg-gradient-info {
+            background: linear-gradient(to right, #90caf9, #047edf 99%);
+        }

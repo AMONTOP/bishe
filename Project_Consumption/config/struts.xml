@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+<!--  <package  name="default" extends="struts-default" namespace="/"> -->
+  <package  name="default" extends="json-default" namespace="/">
+    <interceptors>
+      <interceptor name="consumerInterceptor" class="swust.interceptor.ConsumerInterceptor"></interceptor>
+      <interceptor name="adminInterceptor" class="swust.interceptor.AdminInterceptor"></interceptor>
+      <interceptor name="checkLoginInterceptor" class="swust.interceptor.CheckLoginInterceptor"></interceptor>
+    </interceptors>
+    
+    
+    <action name="*salary" class="salaryAction" method="{1}">
+		<result name="zhanshi">/salary/showSalary.jsp</result>
+		<result name="find" type="chain">showsalary</result>
+		<result name="prepup">/salary/updateSalary.jsp</result>
+		<result name="addPre">/salary/addSalary.jsp</result>
+	</action>
+	
+	<action name="*profit" class="profitAction" method="{1}">
+		<result name="zhanshi">/profit/showProfit.jsp</result>
+		<result name="find" type="chain">showprofit</result>
+		<result name="prepup">/profit/updateProfit.jsp</result>
+		<result name="addPre">/profit/addProfit.jsp</result>
+		<result name="myselect">/profit/myselectProfit.jsp</result>
+	</action>
+	
+    <action name="*accountInfo" class="accountInfoAction" method="{1}">
+		<result name="zhanshi">/accountInfo/showAccountInfo.jsp</result>
+		<result name="find" type="chain">showaccountInfo</result>
+		<result name="prepup">/accountInfo/updateAccountInfo.jsp</result>
+	</action>
+	
+	<action name="*accountPay" class="accountPayAction" method="{1}">
+		<result name="zhanshi">/accountPay/showAccountPay.jsp</result>
+		<result name="find" type="chain">showaccountPay</result>
+		<result name="prepup">/accountPay/updateAccountPay.jsp</result>
+		<result name="addPre">/accountPay/addAccountPay.jsp</result>
+	</action>
+	<action name="*accountPetty" class="accountPettyAction" method="{1}">
+		<result name="zhanshi">/accountPetty/showAccountPetty.jsp</result>
+		<result name="find" type="chain">showaccountPetty</result>
+		<result name="prepup">/accountPetty/updateAccountPetty.jsp</result>
+		<result name="addPre">/accountPetty/addAccountPetty.jsp</result>
+	</action>
+	<action name="*accountProject" class="accountProjectAction" method="{1}">
+		<result name="zhanshi">/accountProject/showAccountProject.jsp</result>
+		<result name="find" type="chain">showaccountProject</result>
+		<result name="prepup">/accountProject/updateAccountProject.jsp</result>
+		<result name="addPre">/accountProject/addAccountProject.jsp</result>
+	</action>
+	<action name="*accountRepay" class="accountRepayAction" method="{1}">
+		<result name="zhanshi">/accountRepay/showAccountRepay.jsp</result>
+		<result name="find" type="chain">showaccountRepay</result>
+		<result name="prepup">/accountRepay/updateAccountRepay.jsp</result>
+		<result name="addPre">/accountRepay/addAccountRepay.jsp</result>
+	</action>
+    
+    <action name="type-*" class="typeAction" method="{1}">
+      <interceptor-ref name="adminInterceptor"></interceptor-ref>
+      <interceptor-ref name="defaultStack"></interceptor-ref>
+      <result>/admin/msg.jsp</result>
+      <result name="login">/admin/login.jsp</result>
+      <result name="addPre">/admin/addType.jsp</result>
+      <result name="findAll">/admin/showType.jsp</result>
+      <result name="updatePre">/admin/updateType.jsp</result>
+    </action>
+    <action name="consumer-*" class="consumerAction" method="{1}">
+      <result>/msg.jsp</result>
+      <result name="loginInput">/login.jsp</result>
+      <result name="registerInput">/register.jsp</result>
+      <result name="logout">/msg.jsp</result>
+      <result name="change">/consumer/changPassword.jsp</result>
+      <result name="changePassword">/msg.jsp</result>
+      <result name="ajax" type="stream">
+        <param name="contentType">text/html</param>
+        <param name="inputName">inputStream</param>
+      </result>
+    </action>
+    
+    <action name="consume-*" class="consumeAction" method="{1}">
+      <interceptor-ref name="consumerInterceptor"></interceptor-ref>
+      <interceptor-ref name="defaultStack"></interceptor-ref>
+      <result>/msg.jsp</result>
+      <result name="login">/login.jsp</result>
+      <result name="addPre">/consumer/addConsume.jsp</result>
+      <result name="findAll">/consumer/showConsume.jsp</result>
+      <result name="updatePre">/consumer/updateConsume.jsp</result>
+      <result name="graph">/consumer/graph.jsp</result>
+      <result name="addPreInput">/consumer/addConsume.jsp</result>
+      <result name="updatePreInput">/consumer/updateConsume.jsp</result>
+      <result name="export" type="stream"></result>
+      <result name="error">/error.jsp</result>
+      <result name="input">/error.jsp</result>
+    </action>
+    
+    <action name="employee-*" class="employeeAction" method="{1}">
+      <result name="logout">/mylogin.jsp</result>
+      <result name="indexpage">/index2.jsp</result>
+      <result name="fail">/index2.jsp</result>
+      <result name="zhanshi">/employee/showEmployee.jsp</result>
+      <result name="find" type="chain">employee-show</result>
+      <result name="prepup">/employee/updateEmployee.jsp</result>
+    </action>
+    
+    
+    <action name="*client" class="clientAction" method="{1}">
+        <interceptor-ref name="checkLoginInterceptor"></interceptor-ref>
+      	<interceptor-ref name="defaultStack"></interceptor-ref> 
+      	<result name="login">/login2.jsp</result>
+		<result name="zhanshi">/client/showClient.jsp</result>
+		<result name="find" type="chain">showclient</result>
+		<result name="prepup">/client/updateClient.jsp</result>
+		<result name="export" type="stream"></result>
+	</action>
+	
+	<action name="*purchase" class="purchaseAction" method="{1}">       
+		<result name="zhanshi">/purchase/showPurchase.jsp</result>
+		<result name="find" type="chain">showpurchase</result>
+		<result name="prepup">/purchase/updatePurchase.jsp</result>
+		<result name="addPre">/purchase/addPurchase.jsp</result>
+	</action>
+	
+	<action name="*project" class="projectAction" method="{1}">
+	 	<!-- <interceptor-ref name="checkLoginInterceptor"></interceptor-ref>
+      	<interceptor-ref name="defaultStack"></interceptor-ref>  -->
+      	<!-- <result name="login">/login2.jsp</result> -->
+		<result name="zhanshi">/project/showProject.jsp</result>
+		<result name="find" type="chain">showproject</result>
+		<result name="prepup">/project/updateProject.jsp</result>
+		<!-- <result name ="fail" type="redirect">showproject</result> -->
+		<result name="addPre">/project/addProject.jsp</result>
+	</action>
+	
+	<action name="*projectTask" class="projectTaskAction" method="{1}">
+		<result name="zhanshi">/projectTask/detail.jsp</result>
+		<result name="find" type="chain">showprojectTask</result>
+		<result name="prepup">/projectTask/updateProjectTask.jsp</result>
+		<result name="add">/projectTask/addProjectTask.jsp</result>
+		<result name="getTask" type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	
+	<action name="*product" class="productAction" method="{1}">
+		<result name="zhanshi">/product/showProduct.jsp</result>
+		<result name="zhanshi2">/product/showProduct3.jsp</result>
+		<result name="addPre">/product/addProduct.jsp</result>
+		<result name="find" type="chain">showproduct</result>
+		<result name="prepup">/product/updateProduct.jsp</result>
+		<result name="zhanshitable">/product/test.jsp</result>
+	</action>
+	
+	<action name="*productCheck" class="productCheckAction" method="{1}">
+		<result name="zhanshi">/productCheck/showProductCheck.jsp</result>
+		 <result name="addPre">/productCheck/addProductCheck.jsp</result>
+		<result name="find" type="chain">showproductCheck</result>
+		<result name="prepup">/productCheck/updateProductCheck.jsp</result>
+		<result name="insert">/uselessProduct/oneAlert.jsp</result>
+	</action>
+	
+	<action name="*productCategory" class="productCategoryAction" method="{1}">
+		<result name="zhanshi">/productCategory/showProductCategory.jsp</result>
+		<result name="find" type="chain">showproductCategory</result>
+		<result name="prepup">/productCategory/updateProductCategory.jsp</result>
+	</action>
+	
+	<action name="*material" class="materialAction" method="{1}">
+		<result name="zhanshi">/material/showMaterial.jsp</result>
+		 <result name="addPre">/material/addMaterial.jsp</result>
+		<result name="find" type="chain">showmaterial</result>
+		<result name="prepup">/material/updateMaterial.jsp</result>
+	</action>
+	
+	<action name="*materialCheck" class="materialCheckAction" method="{1}">
+		<result name="zhanshi">/materialCheck/showMaterialCheck.jsp</result>
+		 <result name="addPre">/materialCheck/addMaterialCheck.jsp</result>
+		<result name="find" type="chain">showmaterialCheck</result>
+		<result name="prepup">/materialCheck/updateMaterialCheck.jsp</result>
+		<result name="insert">/uselessMaterial/oneAlert.jsp</result>
+	</action>
+	
+	<action name="*materialCategory" class="materialCategoryAction" method="{1}">
+		<result name="zhanshi">/materialCategory/showMaterialCategory.jsp</result>
+		<result name="find" type="chain">showmaterialCategory</result>
+		<result name="prepup">/materialCategory/updateMaterialCategory.jsp</result>
+	</action>
+	
+	<action name="*productMaterial" class="productMaterialAction" method="{1}">
+		<result name="zhanshi">/productMaterial/showProductMaterial.jsp</result>
+		 <result name="addPre">/productMaterial/addProductMaterial.jsp</result>
+		<result name="find" type="chain">showproductMaterial</result>
+		<result name="prepup">/productMaterial/updateProductMaterial.jsp</result>
+		<result name="datajson" type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	
+	<action name="*orderBill" class="orderBillAction" method="{1}">
+		<result name="zhanshi">/orderBill/showOrderBill.jsp</result>
+		<result name="addPre">/orderBill/addOrderBill.jsp</result>
+		<result name="find" type="chain">showorderBill</result>
+		<result name="find2" type="chain">addPreorderBillProduct</result>
+		<result name="prepup">/orderBill/updateOrderBill.jsp</result>
+		<result name="showAlert">/project/oneAlert.jsp</result>
+		<result name="export" type="stream"></result>
+	</action>
+	
+	<action name="*orderBillProduct" class="orderBillProductAction" method="{1}">
+		<result name="zhanshi">/orderBillProduct/showOrderBillProduct.jsp</result>
+		<result name="addPre">/orderBillProduct/addOrderBillProduct.jsp</result>
+		<result name="find" type="chain">showorderBillProduct</result>
+		<result name="prepup">/orderBillProduct/updateOrderBillProduct.jsp</result>
+	</action>
+	
+	<action name="*drawMaterialBill" class="drawMaterialBillAction" method="{1}">
+		<result name="zhanshi">/drawMaterialBill/showDrawMaterialBill.jsp</result>
+		<result name="addPre">/drawMaterialBill/addDrawMaterialBill.jsp</result>
+		<result name="myalert">/drawMaterialBill/oneAlert.jsp</result>
+		<result name="find" type="chain">showdrawMaterialBill</result>
+		<result name="prepup">/drawMaterialBill/updateDrawMaterialBill.jsp</result>
+		<result name="optionjson" type="json">
+			<param name="root">result</param>
+		</result>		
+		<result name="idjson" type="json">
+			<param name="root">result</param>
+		</result>	
+		<result name="mysave" type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	
+	<action name="*drawMaterialBillMaterial" class="drawMaterialBillMaterialAction" method="{1}">
+		<result name="zhanshi">/drawMaterialBillMaterial/showDrawMaterialBillMaterial.jsp</result>
+		 <result name="addPre">/drawMaterialBillMaterial/addDrawMaterialBillMaterial.jsp</result>
+		<result name="find" type="chain">showdrawMaterialBillMaterial</result>
+		<result name="prepup">/drawMaterialBillMaterial/updateDrawMaterialBillMaterial.jsp</result>
+	</action>
+	
+	<action name="*returnMaterialBill" class="returnMaterialBillAction" method="{1}">
+		<result name="zhanshi">/returnMaterialBill/showReturnMaterialBill.jsp</result>
+		<result name="addPre">/returnMaterialBill/addReturnMaterialBill.jsp</result>
+		<result name="myalert">/returnMaterialBill/oneAlert.jsp</result>
+		<result name="find" type="chain">showreturnMaterialBill</result>
+		<result name="prepup">/returnMaterialBill/updateReturnMaterialBill.jsp</result>
+		<result name="savejson" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="optionjson" type="json">
+			<param name="root">result</param>
+		</result>		
+		<result name="idjson" type="json">
+			<param name="root">result</param>
+		</result>	
+		<result name="mysave" type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	
+	<action name="*returnMaterialBillMaterial" class="returnMaterialBillMaterialAction" method="{1}">
+		<result name="zhanshi">/returnMaterialBillMaterial/showReturnMaterialBillMaterial.jsp</result>
+		 <result name="addPre">/returnMaterialBillMaterial/addReturnMaterialBillMaterial.jsp</result>
+		<result name="find" type="chain">showreturnMaterialBillMaterial</result>
+		<result name="prepup">/returnMaterialBillMaterial/updateReturnMaterialBillMaterial.jsp</result>
+		<result name="mysave" type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+		
+	<action name="*productOutstockBill" class="productOutstockBillAction" method="{1}">
+		<result name="zhanshi">/productOutstockBill/showProductOutstockBill.jsp</result>
+		<result name="zhanshi2">/productOutstockBill/importProductOutstockBill.jsp</result>
+		 <result name="addPre">/productOutstockBill/addProductOutstockBill.jsp</result>
+		 <result name="find" type="chain">showproductOutstockBill</result>
+		<result name="find3" type="chain">show2productOutstockBill</result>
+		<result name="prepup">/productOutstockBill/updateProductOutstockBill.jsp</result>
+		<result name="prepup2">/productOutstockBill/updateProductInstockBillProduct.jsp</result>
+		<result name="showbill">/productOutstockBill/show.jsp</result>
+		<result name="showmore">/productOutstockBill/showProductOutstockBillProduct.jsp</result>
+		<result name="find2" type="chain">showmoreproductOutstockBill</result>
+		<result name="test" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="list" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="addPre2">/productOutstockBill/addProductOutstockBillProduct.jsp</result>
+		<result name="one">/productOutstockBill/oneAlert.jsp</result>
+	</action>
+	
+	<action name="*productOutstockBillProduct" class="productOutstockBillProductAction" method="{1}">
+		<result name="zhanshi">/productOutstockBillProduct/showProductOutstockBillProduct.jsp</result>
+		 <result name="addPre">/productOutstockBillProduct/addProductOutstockBillProduct.jsp</result>
+		<result name="find" type="chain">showproductOutstockBillProduct</result>
+		<result name="prepup">/productOutstockBillProduct/updateProductOutstockBillProduct.jsp</result>
+	</action>
+	
+	<action name="*productInstockBill" class="productInstockBillAction" method="{1}">
+		<result name="zhanshi">/productInstockBill/showProductInstockBill.jsp</result>
+		<result name="zhanshi2">/productInstockBill/importProductInstockBill.jsp</result>
+		<result name="addPre">/productInstockBill/addProductInstockBill.jsp</result>
+		<result name="find" type="chain">showproductInstockBill</result>
+		<result name="find3" type="chain">show2productInstockBill</result>
+		<result name="find4" type="chain">showproductCheck</result>
+		<result name="prepup">/productInstockBill/updateProductInstockBill.jsp</result>
+		<result name="prepup2">/productInstockBill/updateProductInstockBillProduct.jsp</result>
+		<result name="showbill">/productInstockBill/show.jsp</result>
+		<result name="insert">/productInstockBill/oneAlert.jsp</result>
+		<result name="showmore">/productInstockBill/showProductInstockBillProduct.jsp</result>
+		<result name="find2" type="chain">showmoreproductInstockBill</result>
+		<result name="saveNewjson" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="test" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="list" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="addPre2">/productInstockBill/addProductInstockBillProduct.jsp</result>
+	</action>
+	
+	<action name="*productInstockBillProduct" class="productInstockBillProductAction" method="{1}">
+		<result name="zhanshi">/productInstockBillProduct/showProductInstockBillProduct.jsp</result>
+		 <result name="addPre">/productInstockBillProduct/addProductInstockBillProduct.jsp</result>
+		<result name="find" type="chain">showproductInstockBillProduct</result>
+		<result name="prepup">/productInstockBillProduct/updateProductInstockBillProduct.jsp</result>
+	</action>
+	
+	<!-- <action name="*materialOutstockBill" class="materialOutstockBillAction" method="{1}">
+		<result name="zhanshi">/materialOutstockBill/showMaterialOutstockBill.jsp</result>
+		 <result name="addPre">/materialOutstockBill/addMaterialOutstockBill.jsp</result>
+		<result name="find" type="chain">showmaterialOutstockBill</result>
+		<result name="prepup">/materialOutstockBill/updateMaterialOutstockBill.jsp</result>
+	</action> -->
+	
+	<!-- <action name="*materialOutstockBillMaterial" class="materialOutstockBillMaterialAction" method="{1}">
+		<result name="zhanshi">/materialOutstockBillMaterial/showMaterialOutstockBillMaterial.jsp</result>
+		 <result name="addPre">/materialOutstockBillMaterial/addMaterialOutstockBillMaterial.jsp</result>
+		<result name="find" type="chain">showmaterialOutstockBillMaterial</result>
+		<result name="prepup">/materialOutstockBillMaterial/updateMaterialOutstockBillMaterial.jsp</result>
+	</action> -->
+
+	
+	<action name="*materialInstockBill" class="materialInstockBillAction" method="{1}">
+		<result name="zhanshi">/materialInstockBill/showMaterialInstockBill.jsp</result>
+		<result name="zhanshi2">/materialInstockBill/importMaterialInstockBill.jsp</result>
+		<result name="addPre">/materialInstockBill/addMaterialInstockBill.jsp</result>
+		<result name="find" type="chain">showmaterialInstockBill</result>
+		<result name="find3" type="chain">show2materialInstockBill</result>
+		<result name="find4" type="chain">showmaterialCheck</result>
+		<result name="prepup">/materialInstockBill/updateMaterialInstockBill.jsp</result>
+		<result name="showbill">/materialInstockBill/show.jsp</result>
+		<result name="showmore">/materialInstockBill/showMaterialInstockBillMaterial.jsp</result>
+		<result name="find2" type="chain">showmorematerialInstockBill</result>
+		<result name="insert">/materialInstockBill/oneAlert.jsp</result>
+		<result name="test" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="list" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="addPre2">/materialInstockBill/addMaterialInstockBillMaterial.jsp</result>
+	</action>
+	
+	<action name="*materialOutstockBill" class="materialOutstockBillAction" method="{1}">
+		<result name="zhanshi">/materialOutstockBill/showMaterialOutstockBill.jsp</result>
+		<result name="zhanshi2">/materialOutstockBill/importMaterialOutstockBill.jsp</result>
+		 <result name="addPre">/materialOutstockBill/addMaterialOutstockBill.jsp</result>
+		 <result name="find" type="chain">showmaterialOutstockBill</result>
+		<result name="find3" type="chain">show2materialOutstockBill</result>
+		<result name="prepup">/materialOutstockBill/updateMaterialOutstockBill.jsp</result>
+		<result name="prepup2">/materialOutstockBill/updateMaterialInstockBillMaterial.jsp</result>
+		<result name="showbill">/materialOutstockBill/show.jsp</result>
+		<result name="showmore">/materialOutstockBill/showMaterialOutstockBillMaterial.jsp</result>
+		<result name="find2" type="chain">showmorematerialOutstockBill</result>
+		<result name="test" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="list" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="addPre2">/materialOutstockBill/addMaterialOutstockBillMaterial.jsp</result>
+		<result name="one">/materialOutstockBill/oneAlert.jsp</result>
+	</action>
+	
+	
+<!-- 	<action name="*materialInstockBillMaterial" class="materialInstockBillMaterialAction" method="{1}">
+		<result name="zhanshi">/materialInstockBillMaterial/showMaterialInstockBillMaterial.jsp</result>
+		 <result name="addPre">/materialInstockBillMaterial/addMaterialInstockBillMaterial.jsp</result>
+		<result name="find" type="chain">showmaterialInstockBillMaterial</result>
+		<result name="prepup">/materialInstockBillMaterial/updateMaterialInstockBillMaterial.jsp</result>
+	</action> -->
+		
+	<action name="*supplier" class="supplierAction" method="{1}">
+		<result name="zhanshi">/supplier/showSupplier.jsp</result>
+		<result name="find" type="chain">showsupplier</result>
+		<result name="prepup">/supplier/updateSupplier.jsp</result>
+	</action>	
+	
+	<action name="*supplierMaterial" class="supplierMaterialAction" method="{1}">
+		<result name="zhanshi">/supplierMaterial/showSupplierMaterial.jsp</result>
+		<result name="find" type="chain">showsupplierMaterial</result>
+		<result name="prepup">/supplierMaterial/updateSupplierMaterial.jsp</result>
+		<result name="addPre">/supplierMaterial/addSupplierMaterial.jsp</result>
+	</action>
+	
+	<action name="*employeePermission" class="employeePermissionAction" method="{1}">
+		<result name="zhanshi" type="chain">prepuprole</result>
+		<result name="find" type="chain">showrole</result>
+		<result name="success">/employeePermission/showEmployeePermission.jsp</result>
+		<!-- <result name="prepup">/supplier/updateSupplier.jsp</result> -->
+	</action>
+	
+	<action name="*wareHouse" class="wareHouseAction" method="{1}">
+		<result name="zhanshi">/wareHouse/showWareHouse.jsp</result>
+		<result name="find" type="chain">showwareHouse</result>
+		<result name="prepup">/wareHouse/updateWareHouse.jsp</result>
+		<result name="addPre">/wareHouse/addWareHouse.jsp</result>
+	</action>
+	
+	<action name="*wareHouseProduct" class="wareHouseProductAction" method="{1}">
+		<result name="zhanshi">/wareHouseProduct/showWareHouseProduct.jsp</result>
+		<result name="find" type="chain">showwareHouse</result>
+		<result name="test" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="test2" type="json">
+			<param name="root">result2</param>
+		</result>
+		<result name="getQuantity" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="showChange" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="show" type="chain">show2productOutstockBill</result>
+		<result name="preAdd">/wareHouseProduct/addWareHouseProduct.jsp</result>
+		<!-- <result name="out" type="chain">showwareHouse</result> -->
+		<result name="out" type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	
+	<action name="*materialHouse" class="mwareHouseAction" method="{1}">
+		<result name="zhanshi">/mwareHouse/showMwareHouse.jsp</result>
+		<result name="find" type="chain">showmwareHouse</result>
+		<result name="prepup">/mwareHouse/updateMwareHouse.jsp</result>
+		<result name="addPre">/mwareHouse/addMwareHouse.jsp</result>
+	</action>
+	
+	<action name="*materialHouseMaterial" class="mwareHouseMaterialAction" method="{1}">
+		<result name="zhanshi">/mwareHouseMaterial/showMwareHouseMaterial.jsp</result>
+		
+		<result name="find" type="chain">showmaterialHouse</result>
+		<result name="test" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="test2" type="json">
+			<param name="root">result2</param>
+		</result>
+		<result name="getQuantity" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="showChange" type="json">
+			<param name="root">result</param>
+		</result>
+		<result name="showLack" type="json">
+			<param name="root">result</param>
+		</result>
+		<!-- <result name="showLack">/supplierMaterial/showLackSupplierMaterial.jsp</result> -->
+		<result name="show2" type="chain">show2productOutstockBill</result>
+		<result name="preAdd">/mwareHouseMaterial/addMwareHouseMaterial.jsp</result>
+		<result name="saveNewjson" type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	
+	<action name="*uselessProduct" class="uselessProductAction" method="{1}">
+		<result name="zhanshi">/uselessProduct/showUselessProduct.jsp</result>
+		<result name="find" type="chain">showuselessProduct</result>
+		<result name="prepup">/uselessProduct/updateUselessProduct.jsp</result>
+		<result name="addPre">/uselessProduct/addUselessProduct.jsp</result>
+	</action>
+	
+	<action name="*uselessMaterial" class="uselessMaterialAction" method="{1}">
+		<result name="zhanshi">/uselessMaterial/showUselessMaterial.jsp</result>
+		<result name="find" type="chain">showuselessMaterial</result>
+		<result name="prepup">/uselessMaterial/updateUselessMaterial.jsp</result>
+		<result name="addPre">/uselessMaterial/addUselessMaterial.jsp</result>
+	</action>
+	
+	<action name="*role" class="roleAction" method="{1}">
+		<result name="prepup">/systemSet/atree.jsp</result>
+		<result name="find" type="chain">prepuprole</result>
+	</action>
+	
+    <action name="admin-*" class="adminAction" method="{1}">
+      <result>/admin/msg.jsp</result>
+      <result name="input">/admin/login.jsp</result>
+    </action>
+    <action name="verifyCode" class="verifyCodeAction">  
+    </action> 
+  </package>
+</struts>
